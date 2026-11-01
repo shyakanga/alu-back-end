@@ -8,6 +8,10 @@ import sys
 
 
 def TodoProgress(empId):
+    """
+    Fetches and prints the TODO list progress
+    for a specific employee ID using a REST API.
+    """
     base_url = "https://jsonplaceholder.typicode.com"
 
     user_endpoint = f"{base_url}/users"
