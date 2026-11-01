@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 """
 Fetches information about an employee's TODO list progress from an API
 and exports the data in CSV format.
 """
+
 import csv
 import requests
 import sys
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -19,17 +18,20 @@ if __name__ == "__main__":
         username = user_response.get("username")
 
         todos_url = f"{base_url}/todos"
-        todos_response = requests.get(todos_url, params={"userId": emp_id}).json()
+        todos_response = requests.get(
+            todos_url, params={"userId": emp_id}
+            ).json()
 
         filename = f"{emp_id}.csv"
 
-        with open(filename, mode='w', newline='') as csv_file:
+        with open(filename, mode="w", newline="") as csv_file:
             writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-            
+
             for task in todos_response:
-                writer.writerow([
-                    emp_id, 
-                    username, 
-                    task.get("completed"), 
-                    task.get("title")
-                ])
+                writer.writerow(
+                    [
+                        emp_id,
+                        username,
+                        task.get("completed"),
+                        task.get("title")]
+                )
